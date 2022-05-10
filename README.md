@@ -101,15 +101,15 @@ The opcode pint prints the value at the top of the stack, followed by a new line
 The opcode `pop`
 The opcode pop removes the top element of the stack.
 
-##Swap
+## Swap
 The opcode `swap`
 The opcode swap swaps the top two elements of the stack.
 
-##Add
+# #Add
 The opcode `add`
 The opcode add adds the top two elements of the stack.
 
-#Nop
+# Nop
 The opcode `nop`
 The opcode nop doesn’t do anything. :(
 
