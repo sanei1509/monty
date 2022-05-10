@@ -78,6 +78,40 @@ typedef struct instruction_s
 -   If you can’t malloc anymore, print the error message `Error: malloc failed`, followed by a new line, and exit with status `EXIT_FAILURE`.
 -   We have only use `malloc` and `free` for handle the memory.
 
+# OPcode
+operations that monty is able to execute, so these are the functions we use in our `.m files` to interact with the Stack and Queue
+
+>Below we leave you the functions that our program runs and an example of use
+
+## Push
+The opcode `push`
+ pushes an element to the stack.
+ 
+ 
+
+## Pall
+The opcode `pall`
+prints all the values on the stack, starting from the top of the stack.
+
+## Pint
+The opcode `pint`
+The opcode pint prints the value at the top of the stack, followed by a new line.
+
+## Pop
+The opcode `pop`
+The opcode pop removes the top element of the stack.
+
+##Swap
+The opcode `swap`
+The opcode swap swaps the top two elements of the stack.
+
+##Add
+The opcode `add`
+The opcode add adds the top two elements of the stack.
+
+#Nop
+The opcode `nop`
+The opcode nop doesn’t do anything. :(
 
 
 # Authors & Github accounts :
