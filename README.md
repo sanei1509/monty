@@ -40,6 +40,7 @@ $ gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty
 
 ## Usage examples and return
 
+***doubly linked list representation of a stack (or queue)***
 ````c
 typedef struct stack_s
 {
@@ -49,6 +50,7 @@ typedef struct stack_s
 } stack_t;
 ````
 
+***opcode and its function***
 ````c
 typedef struct instruction_s
 {
