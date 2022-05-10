@@ -1,5 +1,6 @@
 #include "monty.h"
 #include <stdlib.h>
+
 int main(void)
 {
 	stack_t *stack = NULL;
@@ -11,11 +12,17 @@ int main(void)
 	fn(&stack, 4);
 }
 
+/**
+ * inst_sel - selects a function from inst_list based on input
+ * @comm: command
+ * Return: returns a pointer to a function
+ */
 void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 {
 	extern char *vari;
 	int iter = 0, ch_it = 0;
 	char *op_c = NULL;
+
 	instruction_t inst_list[] =
 	{
 		{"push", _push},
@@ -23,14 +30,18 @@ void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 		{NULL, NULL},
 	};
 
+	if (!comm)
+		return (NULL);
+		
 	/* compare */
 	op_c = inst_list[iter].opcode;
+
 	for (iter = 0; op_c != NULL; iter++, op_c = inst_list[iter].opcode)
 	{
 		/* iterate through both strings */
 		for (ch_it = 0; comm[ch_it] != '\0' || op_c[ch_it] != '\0'; ch_it++)
 		{
-			/* break loop in case of end of inst_list element */
+			/* break loop in case of end of op_c */
 			if (op_c[ch_it] == '\0')
 				break;
 
@@ -41,7 +52,6 @@ void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 
 		if (comm[ch_it] == op_c[ch_it])
 		{
-			printf("%s ", op_c);
 			return (inst_list[iter].f); /* coincidence found */
 		}
 	}
@@ -52,7 +62,7 @@ void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack = NULL;
-	printf("line: %d\n", line_number);
+	printf("line: %dn", line_number);
 }
 
 void _pall(stack_t **stack, unsigned int line_number)
