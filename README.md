@@ -105,7 +105,7 @@ The opcode `pop`
 The opcode `swap`
 swaps the top two elements of the stack.
 
-# #Add
+## Add
 The opcode `add`
 adds the top two elements of the stack.
 
