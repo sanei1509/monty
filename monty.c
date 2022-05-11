@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <string.h>
-#include <sys/stat.h>
 
 /**
  *main - take the argument from the command line 
@@ -12,8 +10,8 @@ int main(int argc, char *argv[])
 {
 	FILE *fp = NULL;
 	char *line_read = NULL, *token = NULL;
-	size_t size = 0;
-	ssize_t read = 0;
+	size_t size = 0; ssize_t read = 0;
+	int sim_global_var, line_number = 0;
 
 	if (argc != 2)
 	{
@@ -34,12 +32,19 @@ int main(int argc, char *argv[])
 		token = strtok(line_read, " ");
 		while (token != NULL)
 		{
-			printf("tokenized line-%s\n", token); 
+
+			if (extract_number(token) == -1)
+				printf("%s\n", token);
+			else
+			{	
+				sim_global_var = extract_number(token);
+				printf("%d\n", sim_global_var);
+			}
 			token = strtok(NULL, " ");
 		}
-	}
-
-	
+		line_number++;
+		printf("numero de linea %d\n", line_number);
+	}	
 	free(line_read);
 	fclose(fp);
 	exit(EXIT_SUCCESS);
