@@ -35,12 +35,24 @@ void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 	/* compare */
 	op_c = inst_list[iter].opcode;
 
-	while (op_c != NULL)
+	for (iter = 0; op_c != NULL; iter++, op_c = inst_list[iter].opcode)
 	{
-		if (strcmp(comm, op_c) == 0)
-			return (inst_list[iter].f);
-		iter++;
-		op_c = inst_list[iter].opcode;
+		/* iterate through both strings */
+		for (ch_it = 0; comm[ch_it] != '\0' || op_c[ch_it] != '\0'; ch_it++)
+		{
+			/* break loop in case of end of op_c */
+			if (op_c[ch_it] == '\0')
+				break;
+
+			/* check for differences */
+			if (op_c[ch_it])
+				break;
+		}
+
+		if (comm[ch_it] == op_c[ch_it])
+		{
+			return (inst_list[iter].f); /* coincidence found */
+		}
 	}
 
 	return (NULL);
