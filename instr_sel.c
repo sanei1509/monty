@@ -2,16 +2,18 @@
 /*
 int main(void)
 {
+	extern char *vari;
+
+	vari = "23";
 	stack_t *stack = NULL;
 	void (*fn)(stack_t **, unsigned int);
 
 	printf("test\n");
 
-	fn = inst_sel("push");
+	fn = inst_sel("push", 1);
 	fn(&stack, 4);
 }
 */
-
 /**
  * inst_sel - selects a function from inst_list based on input
  * @comm: command
