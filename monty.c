@@ -83,6 +83,5 @@ int main(int argc, char *argv[])
 	free(line_read);
 	/*verficar que se este liberando*/
 	fclose(fp);
-	exit(EXIT_SUCCESS);
 	return (0);
 }
