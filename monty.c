@@ -13,15 +13,9 @@ int main(int argc, char *argv[])
 	char *line_read = NULL, *token = NULL, *op_c = NULL;
 	size_t size = 0;
 	ssize_t read = 0;
-	int line_number = 1;
-	int flag;
-	extern int vari;
-	extern int err_arg;
-	int a;
+	int line_number = 1, flag, a;
 	stack_t *stack = NULL;
 	void (*fn) (stack_t **, unsigned int);
-
-	err_arg = 0;
 
 	if (argc != 2)
 	{
@@ -38,17 +32,12 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line_read, &size, fp) != -1))
 	{
-		err_arg = 1;
-		op_c = NULL;
-		vari = 0; /*before NULL*/
-		flag = 0;
 		line_read = strtok(line_read, "\n\t");
 		token = strtok(line_read, " ");
-		while (token != NULL)
+		for (vari = 0, flag = 0, err_arg = 1, op_c = NULL; token != NULL; flag++)
 		{
 			if (flag == 0)
 			{	
-				flag = 1;
 				op_c = token;
 			}
 			else if (flag == 1)
@@ -80,8 +69,7 @@ int main(int argc, char *argv[])
 		line_number++;
 	}
 
-	free(line_read);
-	/*verficar que se este liberando*/
+	free(line_read);  /*verficar que se este liberando*/
 	fclose(fp);
 	return (0);
 }
