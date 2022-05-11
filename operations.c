@@ -1,4 +1,4 @@
-#include "main.h"
+#include "monty.h"
 
 /**
 *push - add element to the the stack
@@ -8,28 +8,33 @@
 
 void push(stack_t **head, unsigned int line_number)
 {
-	stack_t *element = NULL;
-	new_node = malloc(sizeof(stack_t));
+	stack_t *new_node = NULL;
 
-	if (element == NULL)
+	if (err_arg == 1)
 	{
-		return(NULL);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{	
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
 
 	/*if tuviera data debería darle el valor*/
-	element->prev = NULL;
-	element->next = NULL;
+	new_node->n = vari;
+	new_node->prev = NULL;
+	new_node->next = *head;
 	
 	if (*head != NULL)
 	{
-		(*head)->prev = element;
+		(*head)->prev = new_node;
 	}
 
-	if (element != NULL)
-	{
-		element->next = *head;
-		*head = new_node;
-	
+	*head = new_node;
 	}
 }
 
@@ -38,19 +43,18 @@ void push(stack_t **head, unsigned int line_number)
 *@head: pointer at the first node
 *@line_number: line_number
 */
-void pall(stack_t **head, unsigned int line_number)
+void pall(stack_t **head, unsigned int line_number __attribute__((unused)))
 {
-	stack_t *aux = NULL;
+	stack_t *c_node = NULL;
 
 	/*Lista vacía*/
 	if (*head == NULL)
 		return;
 
-	aux = *head;
-	while (aux != NULL)
+	c_node = *head;
+	while (c_node != NULL)
 	{
-		printf("%d\n", tmp->n);
-		aux = aux->next;
+		printf("%d\n", c_node->n);
+		c_node = c_node->next;
 	}
 }
-

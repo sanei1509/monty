@@ -1,6 +1,5 @@
 #include "monty.h"
-/*
-int main(void)
+/**
 {
 	extern int vari;
 	vari = 23;
@@ -11,10 +10,11 @@ int main(void)
 	printf("test\n");
 	fn = inst_sel("push");
 	fn(&stack, 4);
-}*/
+}
+*/
 /**
  * inst_sel - selects a function from inst_list based on input
- * @comm: command
+ * @cmd: command
  * Return: returns a pointer to a function
  */
 void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
@@ -24,14 +24,14 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
 
 	instruction_t inst_list[] =
 	{
-		{"push", _push},
-		{"pall", _pall},
+		{"push", push},
+		{"pall", pall},
 		{NULL, NULL},
 	};
 
 	if (!cmd)
 		return (NULL);
-		
+
 	/* compare */
 	op_c = inst_list[iter].opcode;
 
@@ -43,24 +43,4 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
 		op_c = inst_list[iter].opcode;
 	}
 	return (NULL);
-}
-
-void _push(stack_t **stack, unsigned int line_number)
-{
-	extern int vari;
-	extern int err_arg;
-
-	if (err_arg == 0)
-	{
-		stack = NULL;
-		printf("PUSH %d - line: %d\n", vari, line_number);
-	}
-	else
-		printf("arg Error\n");
-}
-
-void _pall(stack_t **stack, unsigned int line_number)
-{
-	stack = NULL;
-	printf("PALL - line: %d\n", line_number);
 }

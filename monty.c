@@ -38,8 +38,6 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line_read, &size, fp) != -1))
 	{
-		printf("%s - ", line_read);
-
 		err_arg = 0;
 		op_c = NULL;
 		vari = 0; /*before NULL*/
@@ -63,6 +61,7 @@ int main(int argc, char *argv[])
 						if (token[a] != '0')
 						{
 							err_arg = 1;
+							printf("err arr");
 							break;
 						}
 					}
