@@ -38,7 +38,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
+void free_dlistint(stack_t *head);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number __attribute__((unused)));
 

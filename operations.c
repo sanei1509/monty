@@ -17,24 +17,24 @@ void push(stack_t **head, unsigned int line_number)
 	}
 	else
 	{	
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
+		new_node = malloc(sizeof(stack_t));
+		if (new_node == NULL)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
+		}
 
-	/*if tuviera data debería darle el valor*/
-	new_node->n = vari;
-	new_node->prev = NULL;
-	new_node->next = *head;
+		/*if tuviera data debería darle el valor*/
+		new_node->n = vari;
+		new_node->prev = NULL;
+		new_node->next = *head;
 	
-	if (*head != NULL)
-	{
-		(*head)->prev = new_node;
-	}
+		if (*head != NULL)
+		{
+			(*head)->prev = new_node;
+		}
 
-	*head = new_node;
+		*head = new_node;
 	}
 }
 

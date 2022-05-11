@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 		line_number++;
 	}
 
+	free_dlistint(stack);
 	free(line_read);  /*verficar que se este liberando*/
 	fclose(fp);
 	return (0);
