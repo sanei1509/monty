@@ -19,7 +19,7 @@
  */
 void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
 {
-	int iter = 0, ch_it = 0;
+	int iter = 0;
 	char *op_c = NULL;
 
 	instruction_t inst_list[] =
