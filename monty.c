@@ -72,6 +72,11 @@ int main(int argc, char *argv[])
 			token = strtok(NULL, " ");
 		}
 		fn = inst_sel(op_c);
+		if (fn == NULL)
+		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
+			exit(EXIT_FAILURE);
+		}
 		fn(&stack, line_number);
 		line_number++;
 	}

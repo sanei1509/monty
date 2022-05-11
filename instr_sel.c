@@ -17,7 +17,7 @@ int main(void)
  * @comm: command
  * Return: returns a pointer to a function
  */
-void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
+void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
 {
 	int iter = 0, ch_it = 0;
 	char *op_c = NULL;
@@ -29,7 +29,7 @@ void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 		{NULL, NULL},
 	};
 
-	if (!comm)
+	if (!cmd)
 		return (NULL);
 		
 	/* compare */
@@ -37,12 +37,11 @@ void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 
 	while (op_c != NULL)
 	{
-		if (strcmp(comm, op_c) == 0)
+		if (strcmp(cmd, op_c) == 0)
 			return (inst_list[iter].f);
 		iter++;
 		op_c = inst_list[iter].opcode;
 	}
-
 	return (NULL);
 }
 
