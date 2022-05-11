@@ -15,7 +15,9 @@ int main(int argc, char *argv[])
 	ssize_t read = 0;
 	int line_number = 1;
 	int flag;
-	extern char *vari;
+	extern int vari;
+	extern int err_no_arg;
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -31,6 +33,7 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line_read, &size, fp) != -1))
 	{
+		err_no_arg = 0;
 		op_c = NULL;
 		vari = NULL;
 		flag = 0;
@@ -43,9 +46,22 @@ int main(int argc, char *argv[])
 				flag = 1;
 				op_c = token;
 			}
-			else
-				vari = token;
-
+			else if (flag == 1)
+			{
+				vari = atoi(token);
+				if (vari == 0)
+				{
+					for (a = 0; token[a] != '\0'; a++)
+					{
+						if (token[a] != '0')
+						{
+							err_arg = 1;
+							break;
+						}
+					}
+				}
+				flag = 2;
+			}
 			token = strtok(NULL, " ");
 		}
 		inst_sel(op_c, line_number);

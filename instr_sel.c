@@ -59,7 +59,7 @@ void (*inst_sel(char *comm, unsigned int line_number))(stack_t **stack, unsigned
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-	extern char *vari;
+	extern int vari;
 
 	stack = NULL;
 	printf("PUSH %d - line: %dn", atoi(vari), line_number);
