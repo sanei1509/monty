@@ -1,22 +1,23 @@
 #include "monty.h"
-/*
+
 int main(void)
 {
-	extern char *vari;
-	vari = "23";
+	extern int vari;
+	vari = 23;
+	err_arg = 1;
 	stack_t *stack = NULL;
 	void (*fn)(stack_t **, unsigned int);
+
 	printf("test\n");
-	fn = inst_sel("push", 1);
+	fn = inst_sel("push");
 	fn(&stack, 4);
 }
-*/
 /**
  * inst_sel - selects a function from inst_list based on input
  * @comm: command
  * Return: returns a pointer to a function
  */
-void (*inst_sel(char *comm, unsigned int line_number))(stack_t **stack, unsigned int line_number)
+void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number)
 {
 	int iter = 0, ch_it = 0;
 	char *op_c = NULL;
@@ -60,9 +61,15 @@ void (*inst_sel(char *comm, unsigned int line_number))(stack_t **stack, unsigned
 void _push(stack_t **stack, unsigned int line_number)
 {
 	extern int vari;
+	extern int err_arg;
 
-	stack = NULL;
-	printf("PUSH %d - line: %dn", atoi(vari), line_number);
+	if (err_arg == 0)
+	{
+		stack = NULL;
+		printf("PUSH %d - line: %dn", vari, line_number);
+	}
+	else
+		printf("arg Error\n");
 }
 
 void _pall(stack_t **stack, unsigned int line_number)

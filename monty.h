@@ -41,8 +41,9 @@ typedef struct instruction_s
 
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
-void (*inst_sel(char *comm, unsigned int))(stack_t **stack, unsigned int line_number);
+void (*inst_sel(char *comm))(stack_t **stack, unsigned int line_number);
 
 int extract_number(char *token);
 int vari;
+int err_arg;
 #endif

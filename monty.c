@@ -16,7 +16,10 @@ int main(int argc, char *argv[])
 	int line_number = 1;
 	int flag;
 	extern int vari;
-	extern int err_no_arg;
+	extern int err_arg;
+	int a;
+
+	err_arg = 0;
 
 	if (argc != 2)
 	{
@@ -33,14 +36,15 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line_read, &size, fp) != -1))
 	{
-		err_no_arg = 0;
+		err_arg = 0;
 		op_c = NULL;
-		vari = NULL;
+		vari = 0; /*before NULL*/
 		flag = 0;
 		line_read = strtok(line_read, "\n\t");
 		token = strtok(line_read, " ");
 		while (token != NULL)
 		{
+			printf("%s\n", token);
 			if (flag == 0)
 			{	
 				flag = 1;
@@ -64,9 +68,11 @@ int main(int argc, char *argv[])
 			}
 			token = strtok(NULL, " ");
 		}
-		inst_sel(op_c, line_number);
+		inst_sel(op_c);
 		line_number++;
 	}
+	vari = 5;
+	inst_sel("push");
 	free(line_read);
 	/*verficar que se este liberando*/
 	fclose(fp);
