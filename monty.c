@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 	FILE *fp = NULL;
 	char *line_read = NULL, *token = NULL, *op_c = NULL;
 	size_t size = 0;
-	ssize_t read = 0;
 	int line_number = 1, flag, a;
 	stack_t *stack = NULL;
 	void (*fn) (stack_t **, unsigned int);
@@ -30,10 +29,10 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	while ((read = getline(&line_read, &size, fp) != -1))
+	while ((getline(&line_read, &size, fp) != -1))
 	{
-		line_read = strtok(line_read, "\n\t");
-		token = strtok(line_read, " ");
+		/*line_read = strtok(line_read, "\n\t");*/
+		token = strtok(line_read, " \n\t");
 		for (vari = 0, flag = 0, err_arg = 1, op_c = NULL; token != NULL; flag++)
 		{
 			if (flag == 0)
