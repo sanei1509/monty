@@ -1,22 +1,25 @@
 #include "monty.h"
 
 /**
- *main - take the argument from the command line 
+ *main - take the argument from the command line
  *@argc: number of arguments
  *@argv: array with the arguments passed
+ *Return: 0
  */
 
 int main(int argc, char *argv[])
 {
 	FILE *fp = NULL;
-	char *line_read = NULL, *token = NULL;
-	size_t size = 0; ssize_t read = 0;
-	int sim_global_var, line_number = 0;
-
+	char *line_read = NULL, *token = NULL, *op_c = NULL;
+	size_t size = 0;
+	ssize_t read = 0;
+	int line_number = 1;
+	int flag;
+	extern char *vari;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 	fp = fopen(argv[1], "r");
@@ -28,24 +31,28 @@ int main(int argc, char *argv[])
 
 	while ((read = getline(&line_read, &size, fp) != -1))
 	{
-		line_read = strtok(line_read, "\n\t$");
+		op_c = NULL;
+		vari = NULL;
+		flag = 0;
+		line_read = strtok(line_read, "\n\t");
 		token = strtok(line_read, " ");
 		while (token != NULL)
 		{
-
-			if (extract_number(token) == -1)
-				printf("%s\n", token);
-			else
+			if (flag == 0)
 			{	
-				sim_global_var = extract_number(token);
-				printf("%d\n", sim_global_var);
+				flag = 1;
+				op_c = token;
 			}
+			else
+				vari = token;
+
 			token = strtok(NULL, " ");
 		}
+		inst_sel(op_c, line_number);
 		line_number++;
-		printf("numero de linea %d\n", line_number);
-	}	
+	}
 	free(line_read);
+	/*verficar que se este liberando*/
 	fclose(fp);
 	exit(EXIT_SUCCESS);
 	return (0);
