@@ -38,7 +38,7 @@ void _div(stack_t **head, unsigned int line_number)
 	}
 	
 	*head = (*head)->next;
-	(*head)->n = (*head)->n - c_node->n;
+	(*head)->n = (*head)->n / c_node->n;
 	(*head)->prev = NULL;
 }
 
