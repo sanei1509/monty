@@ -82,17 +82,30 @@ void pint(stack_t **head, unsigned int line_number __attribute__((unused)))
 }
 
 /**
+ *pop - remove the last element of the stack
+ *@head: pointer to firs element of stack
+ *@line_number: line number of the file bytecode
+ */
 void pop(stack_t **head, unsigned int line_number)
 {
-	stack_t c_node = NULL;
+	stack_t *c_node = NULL;
 
-	if (*head == NULL || head == NULL)
+	if (*head == NULL)
 	{
-		fprintf(stderr, "L%lu: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
-
-
+	c_node = *head;
+	if ((*head)->next == NULL)
+	{
+		*head = NULL;
+		free(c_node);
+	}
+	else
+	{
+		*head = (*head)->next;
+		(*head)->prev = NULL;
+		free(c_node);
+	}
 }
-*/
+
