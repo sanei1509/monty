@@ -16,7 +16,7 @@ void push(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	else
-	{	
+	{
 		new_node = malloc(sizeof(stack_t));
 		if (new_node == NULL)
 		{
@@ -28,7 +28,7 @@ void push(stack_t **head, unsigned int line_number)
 		new_node->n = vari;
 		new_node->prev = NULL;
 		new_node->next = *head;
-	
+
 		if (*head != NULL)
 		{
 			(*head)->prev = new_node;
@@ -57,4 +57,25 @@ void pall(stack_t **head, unsigned int line_number __attribute__((unused)))
 		printf("%d\n", c_node->n);
 		c_node = c_node->next;
 	}
+}
+
+/**
+*pint - print top value of the stack.
+*@head: pointer to first node of the list
+*@line_number: line number of the file with byte code
+*/
+void pint(stack_t **head, unsigned int line_number __attribute__((unused)))
+{
+	stack_t *c_node = *head;
+
+	if (*head != NULL)
+	{
+		printf("%d\n", c_node->n);
+	}
+	else
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number");
+		exit(EXIT_FAILURE);
+	}
+
 }
