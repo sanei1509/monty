@@ -28,9 +28,9 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
-		/*{"swap", swap},*/
-		/*{"add", add},*/
-		/*{"nop", nop},*/
+		{"swap", swap},
+		{"add", add},
+		{"nop", nop},
 		{NULL, NULL},
 	};
 
