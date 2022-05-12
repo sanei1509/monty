@@ -1,6 +1,6 @@
-		push -1
+push -1
 push 4
-	pall Coronavirus
+pall Coronavirus
 push Holberton
-    pall
+pall
 push 4

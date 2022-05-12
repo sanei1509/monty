@@ -30,13 +30,13 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	while ((getline(&line_read, &size, gl.fp) != -1))
+	while ((getline(&gl.line_read, &size, gl.fp) != -1))
 	{
 		gl.vari = 0;
 		gl.err_arg = 1;
 		op_c = NULL;
 
-		op_c = strtok(line_read, " \n\t");
+		op_c = strtok(gl.line_read, " \n\t");
 		token2 = strtok(NULL, " \n\t");
 		if (token2)
 			gl.vari = atoi(token2);

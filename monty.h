@@ -23,6 +23,13 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
+/**
+ * global_s - global variables
+ * @vari: variable that stores n for a node
+ * @err_arg: argument error flag
+ * @line_read: getline buffer
+ * @fp: file pointer
+ */
 typedef struct global_s
 {
 	int vari;
@@ -30,8 +37,6 @@ typedef struct global_s
 	char *line_read;
 	FILE *fp;
 } global_t;
-
-global_t gl;
 
 /**
  * struct instruction_s - opcode and its function
@@ -47,14 +52,22 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void free_dlistint(stack_t *head);
+
+/* --- FUNCTIONS --- */
+void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
+
+/* operations */
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pint(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pop(stack_t **head, unsigned int line_number);
 
-void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
-
+/* tools */
+void free_dlistint(stack_t *head);
 int extract_number(char *token);
 int check_token(char *);
+
+/* Variables */
+global_t gl;
+
 #endif
