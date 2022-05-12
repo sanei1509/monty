@@ -81,5 +81,18 @@ void pint(stack_t **head, unsigned int line_number __attribute__((unused)))
 
 }
 
+/**
+void pop(stack_t **head, unsigned int line_number)
+{
+	stack_t c_node = NULL;
+
+	if (*head == NULL || head == NULL)
+	{
+		fprintf(stderr, "L%lu: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
 
 
+}
+*/
