@@ -42,6 +42,7 @@ void free_dlistint(stack_t *head);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pint(stack_t **head, unsigned int line_number __attribute__((unused)));
+void pop(stack_t **head, unsigned int line_number);
 
 void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
 
