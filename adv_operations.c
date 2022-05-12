@@ -27,7 +27,7 @@ void sub(stack_t **head, unsigned int line_number)
  *@head: pointer
  */
 
-void div(stack_t **head, unsigned int line_number)
+void _div(stack_t **head, unsigned int line_number)
 {
 	stack_t *c_node = *head;
 
