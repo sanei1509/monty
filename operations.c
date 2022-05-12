@@ -21,6 +21,7 @@ void push(stack_t **head, unsigned int line_number)
 		
 		if (head == NULL)
 		{
+			*head = new_node;
 			return;
 		}
 		if (new_node == NULL)
