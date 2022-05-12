@@ -18,6 +18,11 @@ void push(stack_t **head, unsigned int line_number)
 	else
 	{
 		new_node = malloc(sizeof(stack_t));
+		
+		if (head == NULL)
+		{
+			return;
+		}
 		if (new_node == NULL)
 		{
 			fprintf(stderr, "Error: malloc failed\n");
@@ -79,3 +84,6 @@ void pint(stack_t **head, unsigned int line_number __attribute__((unused)))
 	}
 
 }
+
+
+
