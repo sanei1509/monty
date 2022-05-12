@@ -56,10 +56,10 @@ int main(int argc, char *argv[])
 
 		if (fn == NULL)
 		{
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
 			free_dlistint(stack);
 			free(gl.line_read);
 			fclose(gl.fp);
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
 			exit(EXIT_FAILURE);
 		}
 		/* check status: FN != NULL */
