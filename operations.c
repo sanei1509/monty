@@ -10,7 +10,7 @@ void push(stack_t **head, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 
-	if (gl.err_arg == 1)
+	if (gl.err_arg != 0)
 	{
 		free_dlistint(*head);
 		free(gl.line_read);
