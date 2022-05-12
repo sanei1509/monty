@@ -23,6 +23,15 @@ typedef struct stack_s
         struct stack_s *next;
 } stack_t;
 
+typedef struct global_s
+{
+	int vari;
+	int err_arg;
+	char *line_read;
+	FILE *fp;
+} global_t;
+
+global_t gl;
 
 /**
  * struct instruction_s - opcode and its function
@@ -48,6 +57,4 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
 
 int extract_number(char *token);
 int check_token(char *);
-int vari;
-int err_arg;
 #endif

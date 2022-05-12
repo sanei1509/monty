@@ -32,7 +32,7 @@ int check_token(char *str)
 	if (!str || str[0] == '\0')
 		return (-1);
 
-	if (vari == 0)
+	if (gl.vari == 0)
 	{
 		if (str[0] != '0' || str[0] != '-')
 			return (-1);

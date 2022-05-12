@@ -10,8 +10,9 @@ void push(stack_t **head, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 
-	if (err_arg == 1)
+	if (gl.err_arg == 1)
 	{
+		free_dlistint(*head);
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -21,12 +22,14 @@ void push(stack_t **head, unsigned int line_number)
 
 		if (new_node == NULL)
 		{
+
+			free_dlistint(*head);
 			fprintf(stderr, "Error: malloc failed\n");
 			exit(EXIT_FAILURE);
 		}
 
 		/*if tuviera data debería darle el valor*/
-		new_node->n = vari;
+		new_node->n = gl.vari;
 		new_node->prev = NULL;
 		new_node->next = *head;
 
