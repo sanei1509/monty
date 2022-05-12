@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		if (fn == NULL)
 		{
 			free_dlistint(stack);
-			free(line_read);
+			free(gl.line_read);
 			fclose(gl.fp);
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
 			exit(EXIT_FAILURE);
@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	}
 
 	free_dlistint(stack);
-	free(line_read);  /*verficar que se este liberando*/
+	free(gl.line_read);  /*verficar que se este liberando*/
 	fclose(gl.fp);
 	return (0);
 }
