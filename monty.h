@@ -47,6 +47,7 @@ void pop(stack_t **head, unsigned int line_number);
 void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
 
 int extract_number(char *token);
+int check_token(char *);
 int vari;
 int err_arg;
 #endif
