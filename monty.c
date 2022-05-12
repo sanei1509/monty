@@ -32,19 +32,25 @@ int main(int argc, char *argv[])
 
 	while ((getline(&gl.line_read, &size, gl.fp) != -1))
 	{
-		gl.vari = 0;
-		gl.err_arg = 1;
+		/*gl.vari = 0;*/
+		gl.err_arg = -1;
 		op_c = NULL;
 
 		op_c = strtok(gl.line_read, " \n\t");
 		token2 = strtok(NULL, " \n\t");
+		/*printf("%s\n", op_c);
+		printf("%s\n", token2);*/
 		if (token2)
 			gl.vari = atoi(token2);
 
 		if (check_token(token2) == 0)
+		{
 			gl.err_arg = 0;
+		}
 		else
-			gl.err_arg = 1;
+		{
+			gl.err_arg = -1;
+		}
 
 		fn = inst_sel(op_c);
 
