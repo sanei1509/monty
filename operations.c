@@ -12,10 +12,10 @@ void push(stack_t **head, unsigned int line_number)
 
 	if (gl.err_arg != 0)
 	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_dlistint(*head);
 		free(gl.line_read);
 		fclose(gl.fp);
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -24,10 +24,10 @@ void push(stack_t **head, unsigned int line_number)
 
 		if (new_node == NULL)
 		{
+			fprintf(stderr, "Error: malloc failed\n");
 			fclose(gl.fp);
 			free(gl.line_read);
 			free_dlistint(*head);
-			fprintf(stderr, "Error: malloc failed\n");
 			exit(EXIT_FAILURE);
 		}
 
@@ -80,10 +80,10 @@ void pint(stack_t **head, unsigned int line_number __attribute__((unused)))
 		printf("%d\n", c_node->n);
 	}
 	else
-	{		
+	{
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		fclose(gl.fp);
 		free(gl.line_read);
-		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
@@ -100,9 +100,9 @@ void pop(stack_t **head, unsigned int line_number)
 
 	if (*head == NULL)
 	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		fclose(gl.fp);
 		free(gl.line_read);
-		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	c_node = *head;
