@@ -1,17 +1,6 @@
 #include "monty.h"
 
 /**
- *clean_all - close, free to the list and return getline
- *@stack: node of type stack
- */
-void clean_all(stack_t *stack)
-{
-	free_dlistint(stack);
-	free(gl.line_read);
-	fclose(gl.fp);
-}
-
-/**
  *print_error - handle error of args/open the file and handle error
  *@argc: receive number of arguments
  *@name_file: receive the op_code to execute
@@ -73,12 +62,16 @@ int main(int argc, char *argv[])
 		if (fn == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
-			clean_all(stack);
+			free_dlistint(stack);
+			free(gl.line_read);
+			fclose(gl.fp);
 			exit(EXIT_FAILURE);
 		}
 		fn(&stack, line_number);
 		line_number++;
 	}
-	clean_all(stack);
+	free_dlistint(stack);
+	free(gl.line_read);
+	fclose(gl.fp);
 	return (0);
 }
