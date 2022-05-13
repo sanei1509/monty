@@ -129,7 +129,7 @@ void pchar(stack_t **head, unsigned int line_number __attribute__((unused)))
 	stack_t *c_node = *head;
 
 	if (c_node->n < 127)
-		fprintfi(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 	
 	else if (*head != NULL)
 	{
