@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- *free_everything - close, free to the list and return getline
+ *clean_all - close, free to the list and return getline
  *@stack: node of type stack
  */
 void clean_all(stack_t *stack)
