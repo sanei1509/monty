@@ -13,15 +13,16 @@ void swap(stack_t **head, unsigned int line_number)
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
+		fclose(gl.fp);
+		free_dlistint(*head);
+		free(gl.line_read);
 		exit(EXIT_FAILURE);
 	}
 
 	num = (*head)->n;
-	*head = (*head)->next;
 	/*intercambio de n*/
-	(*head)->prev->n = num;
-	(*head)->n = num;
-	*head = (*head)->prev;
+	(*head)->n = (*head)->next->n;
+	(*head)->next->n = num;
 }
 
 /**
@@ -36,6 +37,9 @@ void add(stack_t **head, unsigned int line_number)
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
+		fclose(gl.fp);
+		free_dlistint(*head);
+		free(gl.line_read);
 		exit(EXIT_FAILURE);
 	}
 
@@ -44,6 +48,7 @@ void add(stack_t **head, unsigned int line_number)
 	/*necesito sumar valores de ambos elementos*/
 	(*head)->n = (*head)->n + c_node->n;
 	(*head)->prev = NULL;
+	free(c_node);
 }
 
 /**
@@ -51,7 +56,9 @@ void add(stack_t **head, unsigned int line_number)
  *@head: variable not used
  *@line_num
  */
-void nop(stack_t **stack __attribute__((unused)), unsigned int line_number __attribute__((unused)))
+void nop(stack_t **stack, unsigned int line_number)
 {
- 	/*esto o castear las variables a void para indicarle que no vamos a usarlas*/
+	(void)stack;
+	(void)line_number;
+	/*esto o castear las variables a void para indicarle que no vamos a usarlas*/
 }

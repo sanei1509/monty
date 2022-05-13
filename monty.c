@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 		op_c = NULL;
 
 		op_c = strtok(gl.line_read, " \n\t");
-		if (op_c == NULL)
+		if (op_c == NULL || op_c[0] == '#')
 			continue;
 		token2 = strtok(NULL, " \n\t");
 		if (token2)
