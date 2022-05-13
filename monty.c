@@ -1,6 +1,39 @@
 #include "monty.h"
 
 /**
+ *free_everything - close, free to the list and return getline
+ *@stack: node of type stack
+ */
+void free_everything(stack_ *stack)
+{
+	free_dlistint(stack);
+	free(gl.line_read);
+	fclose(gl.fp);
+}
+
+/**
+ *print_error - handle error of args/open the file and handle error
+ *@argc: receive number of arguments
+ *@name_file: receive the op_code to execute
+ */
+void print_error(int argc, char *name_file)
+{
+	gl.fp = NULL;
+
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+	}
+	/*open and save return NULL or pointer to the file*/
+	gl.fp = fopen(name_file, "r");
+	if (gl.fp == NULL)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", name_file);
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
  *main - take the argument from the command line
  *@argc: number of arguments
  *@argv: array with the arguments passed
@@ -13,26 +46,13 @@ int main(int argc, char *argv[])
 	size_t size = 0;
 	int line_number = 1;
 	stack_t *stack = NULL;
-	void (*fn)(stack_t**, unsigned int);	
-	gl.fp = NULL;	
+	void (*fn)(stack_t**, unsigned int);
+
 	gl.line_read = NULL;
-
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
-	gl.fp = fopen(argv[1], "r");
-	if (gl.fp == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+	print_error(argc, argv[1]);
 
 	while ((getline(&gl.line_read, &size, gl.fp) != -1))
 	{
-		/*gl.vari = 0;*/
 		gl.err_arg = -1;
 		op_c = NULL;
 
@@ -53,17 +73,12 @@ int main(int argc, char *argv[])
 		if (fn == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
-			free_dlistint(stack);
-			free(gl.line_read);
-			fclose(gl.fp);
+			free_everything(stack);
 			exit(EXIT_FAILURE);
 		}
 		fn(&stack, line_number);
 		line_number++;
 	}
-
-	free_dlistint(stack);
-	free(gl.line_read);
-	fclose(gl.fp);
+	free_everything(stack);
 	return (0);
 }
