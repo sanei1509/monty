@@ -4,7 +4,7 @@
  *free_everything - close, free to the list and return getline
  *@stack: node of type stack
  */
-void free_everything(stack_ *stack)
+void clean_all(stack_t *stack)
 {
 	free_dlistint(stack);
 	free(gl.line_read);
@@ -73,12 +73,12 @@ int main(int argc, char *argv[])
 		if (fn == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
-			free_everything(stack);
+			clean_all(stack);
 			exit(EXIT_FAILURE);
 		}
 		fn(&stack, line_number);
 		line_number++;
 	}
-	free_everything(stack);
+	clean_all(stack);
 	return (0);
 }
