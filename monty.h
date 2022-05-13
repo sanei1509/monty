@@ -60,6 +60,7 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pint(stack_t **head, unsigned int line_number __attribute__((unused)));
+void pchar(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pop(stack_t **head, unsigned int line_number);
 
 void add(stack_t **head, unsigned int line_number);

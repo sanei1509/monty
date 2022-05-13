@@ -53,8 +53,7 @@ int main(int argc, char *argv[])
 		if (fn == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, op_c);
-			if (stack)
-				free_dlistint(stack);
+			free_dlistint(stack);
 			free(gl.line_read);
 			fclose(gl.fp);
 			exit(EXIT_FAILURE);
@@ -63,8 +62,7 @@ int main(int argc, char *argv[])
 		line_number++;
 	}
 
-	if (stack)
-		free_dlistint(stack);
+	free_dlistint(stack);
 	free(gl.line_read);
 	fclose(gl.fp);
 	return (0);
