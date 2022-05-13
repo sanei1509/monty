@@ -37,20 +37,16 @@ int main(int argc, char *argv[])
 		op_c = NULL;
 
 		op_c = strtok(gl.line_read, " \n\t");
+		if (op_c == NULL)
+			continue;
 		token2 = strtok(NULL, " \n\t");
-		/*printf("%s\n", op_c);
-		printf("%s\n", token2);*/
 		if (token2)
 			gl.vari = atoi(token2);
 
 		if (check_token(token2) == 0)
-		{
 			gl.err_arg = 0;
-		}
 		else
-		{
 			gl.err_arg = -1;
-		}
 
 		fn = inst_sel(op_c);
 
@@ -62,13 +58,12 @@ int main(int argc, char *argv[])
 			fclose(gl.fp);
 			exit(EXIT_FAILURE);
 		}
-		/* check status: FN != NULL */
 		fn(&stack, line_number);
 		line_number++;
 	}
 
 	free_dlistint(stack);
-	free(gl.line_read);  /*verficar que se este liberando*/
+	free(gl.line_read);
 	fclose(gl.fp);
 	return (0);
 }

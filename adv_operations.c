@@ -19,9 +19,10 @@ void sub(stack_t **head, unsigned int line_number)
 
         /*guarde referencia asi que puedo mover mi puntero head*/
         *head = (*head)->next;
-        /*necesito sumar valores de ambos elementos*/
+        /*necesito restar valores de ambos elementos*/
         (*head)->n = (*head)->n - c_node->n;
         (*head)->prev = NULL;
+	free(c_node);
 }
 
 /**
