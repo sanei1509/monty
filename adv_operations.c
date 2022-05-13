@@ -38,7 +38,8 @@ void _div(stack_t **head, unsigned int line_number)
 	{
 		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
 		fclose(gl.fp);
-		free_dlistint(*head);
+		if (*head)
+			free_dlistint(*head);
 		free(gl.line_read);
 		exit(EXIT_FAILURE);
 	}
