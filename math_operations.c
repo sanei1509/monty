@@ -1,32 +1,6 @@
 #include "monty.h"
 
 /**
- *swap - to exchange the las two elements
- *@head: pointer to the first element
- *@line_number: line number of byte codes
- */
-
-void swap(stack_t **head, unsigned int line_number)
-{
-	int num = 0;
-
-	if (*head == NULL || (*head)->next == NULL)
-	{
-		fprintf(stderr, "L%u: can't swap, stack too short\n", line_number);
-		fclose(gl.fp);
-		if (*head)
-			free_dlistint(*head);
-		free(gl.line_read);
-		exit(EXIT_FAILURE);
-	}
-
-	num = (*head)->n;
-	/*intercambio de n*/
-	(*head)->n = (*head)->next->n;
-	(*head)->next->n = num;
-}
-
-/**
  *add - add the last two elements 
  *@head: pointer to the first element
  *@line_number: line number of byte codes
@@ -80,14 +54,57 @@ void mul(stack_t **head, unsigned int line_number)
 	free(c_node);
 }
 
-/**
- *nop - do nothing
- *@head: variable not used
- *@line_num
- */
-void nop(stack_t **stack, unsigned int line_number)
+void sub(stack_t **head, unsigned int line_number)
 {
-	(void)stack;
-	(void)line_number;
-	/*esto o castear las variables a void para indicarle que no vamos a usarlas*/
+        stack_t *c_node = *head;
+
+        if (*head == NULL || (*head)->next == NULL)
+        {
+                fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		fclose(gl.fp);
+		free(gl.line_read);
+                exit(EXIT_FAILURE);
+        }
+
+        /*guarde referencia asi que puedo mover mi puntero head*/
+        *head = (*head)->next;
+        /*necesito restar valores de ambos elementos*/
+        (*head)->n = (*head)->n - c_node->n;
+        (*head)->prev = NULL;
+	free(c_node);
+}
+
+/**
+ * _div - div the last two element of the stack
+ * @head: pointer
+ * @line_number: line number
+ */
+
+void _div(stack_t **head, unsigned int line_number)
+{
+	stack_t *c_node = *head;
+
+	if (*head == NULL || (*head)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+		fclose(gl.fp);
+		if (*head)
+			free_dlistint(*head);
+		free(gl.line_read);
+		exit(EXIT_FAILURE);
+	}
+	
+	if (c_node->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero", line_number);
+		fclose(gl.fp);
+		free_dlistint(*head);
+		free(gl.line_read);
+		exit(EXIT_FAILURE);
+	}
+
+	*head = (*head)->next;
+	(*head)->n = (*head)->n / c_node->n;
+	(*head)->prev = NULL;
+	free(c_node);
 }
