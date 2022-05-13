@@ -18,13 +18,13 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
- * global_s - global variables
+ * struct global_s - global variables
  * @vari: variable that stores n for a node
  * @err_arg: argument error flag
  * @line_read: getline buffer
@@ -48,8 +48,8 @@ typedef struct global_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 
