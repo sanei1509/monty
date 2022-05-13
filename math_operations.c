@@ -108,3 +108,38 @@ void _div(stack_t **head, unsigned int line_number)
 	(*head)->prev = NULL;
 	free(c_node);
 }
+
+/**
+ * mod - div the last two element of the stack
+ * @head: pointer
+ * @line_number: line number
+ */
+
+void mod(stack_t **head, unsigned int line_number)
+{
+	stack_t *c_node = *head;
+
+	if (*head == NULL || (*head)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		fclose(gl.fp);
+		if (*head)
+			free_dlistint(*head);
+		free(gl.line_read);
+		exit(EXIT_FAILURE);
+	}
+	
+	if (c_node->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		fclose(gl.fp);
+		free_dlistint(*head);
+		free(gl.line_read);
+		exit(EXIT_FAILURE);
+	}
+
+	*head = (*head)->next;
+	(*head)->n = (*head)->n % c_node->n;
+	(*head)->prev = NULL;
+	free(c_node);
+}

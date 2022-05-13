@@ -34,6 +34,7 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number)
 		{"sub", sub},
 		{"nop", nop},
 		{"mul", mul},
+		{"mod", mod},
 		{"pchar", pchar},
 		{NULL, NULL},
 	};

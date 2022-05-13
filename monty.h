@@ -60,16 +60,18 @@ void (*inst_sel(char *cmd))(stack_t **stack, unsigned int line_number);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pint(stack_t **head, unsigned int line_number __attribute__((unused)));
-void pchar(stack_t **head, unsigned int line_number __attribute__((unused)));
 void pop(stack_t **head, unsigned int line_number);
-
-void add(stack_t **head, unsigned int line_number);
-void mul(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
+
+/* math */
+void add(stack_t **head, unsigned int line_number);
+void mul(stack_t **head, unsigned int line_number);
 void sub(stack_t **head, unsigned int line_number);
 void _div(stack_t **head, unsigned int line_number);
+void mod(stack_t **head, unsigned int line_number);
 
+void pchar(stack_t **head, unsigned int line_number __attribute__((unused)));
 
 /* tools */
 void free_dlistint(stack_t *head);
