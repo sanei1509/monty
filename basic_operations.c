@@ -120,9 +120,9 @@ void pop(stack_t **head, unsigned int line_number)
 }
 
 /**
- *nop - do nothing
- *@head: variable not used
- *@line_num
+ *nop- doesn´t nothing
+ *@stack: variable not used
+ *@line_number: not used
  */
 void nop(stack_t **stack, unsigned int line_number)
 {
