@@ -96,7 +96,7 @@ void _div(stack_t **head, unsigned int line_number)
 	
 	if (c_node->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero", line_number);
+		fprintf(stderr, "L%u: division by zero\n", line_number);
 		fclose(gl.fp);
 		free_dlistint(*head);
 		free(gl.line_read);
